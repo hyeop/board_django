@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if request.user in con.voter.all %}
+    투표참여함
+{% else %}
+    <form method="POST">
+        {% csrf_token %}
+        {% for i in topic %}
+            <input type="radio" value="{{forloop.counter0}}" name="3">{{i.name}}
+        {% endfor %}
+        <button>vote</button>
+    </form>
+    
+    <div class="input-group">
+        <div class="input-group-text">
+            <img src="/media/good.jpg">
+            <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with radio button">
+    </div>
+{% endif %}
+{% endblock %}
